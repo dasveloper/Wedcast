@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SlideShow from "./SlideShow";
 import LoginPage from "./LoginPage";
 import PrivateFeed from "./PrivateFeed";
+import FindWedcast from "./FindWedcast";
 
 import firebase from "./Firebase.js"; // <--- add this line
 
@@ -10,10 +11,14 @@ export default class Cast extends Component {
     super(props);
     this.state = {
       loggedIn: null,
-      hasAccess: null
+      hasAccess: null,
+      castId: null
     };
     this.grantAccess = this.grantAccess.bind(this);
+    this.setCastId = this.setCastId.bind(this);
+
   }
+
   checkAccess() {
     let self = this;
     const { currentUser } = firebase.auth();
@@ -35,12 +40,22 @@ export default class Cast extends Component {
         }
       });
   }
+
   grantAccess() {
     this.setState({ hasAccess: true });
   }
+  
+  setCastId(castId) {
+ 
+    this.setState({ castId });
+  }
   componentDidMount() {
     let self = this;
-
+    let { castId } = this.props.match.params;
+    this.setState({ castId });
+    window.onpopstate  = (e) => {
+      this.setState({castId: null})
+      }
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ loggedIn: true });
@@ -50,21 +65,23 @@ export default class Cast extends Component {
       }
     });
   }
-
   render() {
-    let { loggedIn, hasAccess } = this.state;
+    let { loggedIn, hasAccess, castId } = this.state;
     return (
       <div class="cast-wrapper">
-        {!loggedIn && <LoginPage castId={this.props.match.params.id} />}
-        {!hasAccess &&
+        {!castId && (
+          <FindWedcast
+            history={this.props.history}
+            setCastId={this.setCastId}
+          />
+        )}
+        {castId && !loggedIn && <LoginPage castId={castId} />}
+        {castId &&
+          !hasAccess &&
           loggedIn && (
-            <PrivateFeed
-              grantAccess={this.grantAccess}
-              castId={this.props.match.params.id}
-            />
+            <PrivateFeed grantAccess={this.grantAccess} castId={castId} />
           )}
-        {loggedIn &&
-          hasAccess && <SlideShow castId={this.props.match.params.id} />}
+        {castId && loggedIn && hasAccess && <SlideShow castId={castId} />}
       </div>
     );
   }

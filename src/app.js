@@ -5,13 +5,16 @@ import { BrowserRouter, Route,Switch } from "react-router-dom";
 import Home from "./components/Home";
 import NotFoundPage from "./components/NotFoundPage";
 import Cast from "./components/Cast";
+import Index from "./components/Index";
 
 
 const routes = (
   <BrowserRouter>
     <Switch>
-      <Route path="/" component={Home} exact={true}/>
-      <Route path="/cast/:id" component={Cast} />
+      <Route path="/" component={Index} exact={true}/>
+      <Route path="/cast/:castId" component={Cast} />
+      <Route path="/cast" component={Cast} />
+
       <Route component={NotFoundPage} />
     </Switch>
   </BrowserRouter>
