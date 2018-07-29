@@ -14,4 +14,3 @@ const renderApplication = () => {
 
 renderApplication(SlideShow);
 
-d
