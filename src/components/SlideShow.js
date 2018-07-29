@@ -11,17 +11,7 @@ class SlideShow extends Component {
       password: null
     };
   }
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.props.castID !== prevState.castId) {
-      return { castId: nextProps.props.castID };
-    } else return null;
-  }
-  componentDidUpdate(prevProps) {
-    //if (prevProps.castID !== this.props.castId) {
-    //  console.log("change");
-    //this.getImages();
-    // }
-  }
+
   componentDidMount(){
     this.getImages();
 
