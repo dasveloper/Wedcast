@@ -1,5 +1,5 @@
 import ImageGallery from 'react-image-gallery';
-import firebase from './firebase.js'; // <--- add this line
+import firebase from './Firebase.js'; // <--- add this line
 import React, { Component } from 'react';
 
 
