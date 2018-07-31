@@ -113,15 +113,15 @@ h6 {
 .logo {
   // position: absolute;
   top: 40px;
-  max-width: 300px;
+  width: 300px;
+  max-width: 90%;
   z-index: 10;
 }
 .login-wrapper {
   margin: 40px;
-  min-height: 300px;
-  min-width: 450px;
-  max-height: 450px;
-  max-width: 300px;
+  width: 450px;
+  height: 300px;
+  max-width: 100%;
   border-radius: 4px;
   padding: 40px;
   z-index: 2;
@@ -174,7 +174,7 @@ h6 {
     border-radius: 4px;
     font-family: QuicksandLight;
     box-sizing: border-box;
-    &:hover{
+    &:hover {
       background: #58919f;
     }
   }
@@ -184,31 +184,29 @@ h6 {
 
 .hero {
   display: flex;
-  flex-direction: row;
-  height: 85vh;
+  flex-direction: column;
+  height: auto;
   position: relative;
-  
-  .hero-bg{
 
-height: 100%;
-width: 100%;
-position: absolute;
-overflow: hidden;
-  
-  &::after {
-    content: "";
-    background-image: url("/../src/assets/bride-groom.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 100%;
+  .hero-bg {
     height: 100%;
-    filter: blur(2px);
-    z-index: -1;
-    transform: scale(1.01);
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
 
+    &::after {
+      content: "";
+      background-image: url("/../src/assets/bride-groom.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      filter: blur(2px);
+      z-index: -1;
+      transform: scale(1.01);
+    }
   }
-}
   .hero-left,
   .hero-right {
     flex: 1;
@@ -222,21 +220,20 @@ overflow: hidden;
 
     .phone-img {
       z-index: 2;
-      height: 95%;
+      height: 400px;
       transform: translateY(5%);
     }
   }
   .hero-left {
- 
     justify-content: center;
-    .hero-inner{
+    .hero-inner {
       flex-direction: column;
       align-items: center;
       display: flex;
-      background: rgba(0,0,0,0.5);
-max-width: 80%;
+      background: rgba(0, 0, 0, 0.5);
+      width: 100%;
       padding: 30px 20px;
-      border-radius: 8px;
+      border-radius: 0;
     }
     .hero-logo {
       max-width: 300px;
@@ -247,7 +244,7 @@ max-width: 80%;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      padding: 10px 20px ;
+      padding: 10px 20px;
       border-radius: 100px;
       margin-top: 10px;
       .ios-appstore {
@@ -256,12 +253,12 @@ max-width: 80%;
       .ios-appstore-text {
         color: #fff;
         margin-left: 10px;
-        font-size: .8rem;
+        font-size: 0.8rem;
         font-family: Quicksand;
         text-align: center;
         line-height: 1;
-        span{
-          font-size:1.3rem;
+        span {
+          font-size: 1.3rem;
           font-family: QuicksandMedium;
 
           display: block;
@@ -279,8 +276,8 @@ max-width: 80%;
     }
   }
 }
-.intro{
-  background:#1f9fac;
+.intro {
+  background: #1f9fac;
   padding: 40px;
   padding-top: 80px;
   color: #fff;
@@ -289,12 +286,12 @@ max-width: 80%;
   font-size: 1.4rem;
   width: 100%;
   text-align: center;
-  p{
+  p {
     margin: auto;
     width: 80%;
     display: block;
   }
-  .find-wedcast{
+  .find-wedcast {
     display: inline-block;
     color: #fff;
     border: 1px solid #fff;
@@ -304,39 +301,72 @@ max-width: 80%;
     text-decoration: none;
     font-family: QuicksandMedium;
 
-    &:hover{
+    &:hover {
       color: #1f9fac;
       background-color: #fff;
     }
   }
 }
-.feature{
+.feature {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   max-width: 90%;
   margin: auto;
-  .feature-left, .feature-right{
+  .feature-left,
+  .feature-right {
     padding: 20px;
     display: flex;
     flex-direction: column;
     flex: 1;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
-  .feature-image{
+  .feature-left {
+    order: 1;
+  }
+  .feature-right {
+    order: 2;
+  }
+  .feature-image {
     height: 300px;
   }
-  .feature-header{
+  .feature-header {
     font-size: 1.8rem;
     font-family: QuicksandBold;
-
   }
-  .feature-text{
+  .feature-text {
     max-width: 90%;
     margin-top: 10px;
     font-size: 1.4rem;
     font-family: Quicksand;
     text-align: center;
+  }
+}
 
+@media screen and (min-width: 690px) {
+  .hero {
+    flex-direction: row;
+    height: 85vh;
+    .hero-left {
+      .hero-inner {
+        width: auto;
+        max-width: 80%;
+        border-radius: 8px;
+      }
+    }
+    .hero-right {
+      .phone-img {
+        height: 95%;
+      }
+    }
+  }
+  .feature {
+    flex-direction: row;
+
+    .feature-right,
+    .feature-left {
+      order: initial;
+    }
   }
 }

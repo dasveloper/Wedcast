@@ -45,7 +45,7 @@ export default class App extends Component {
           <form class="login-form" onSubmit={this.handleSubmit}>
             <div>
               <p class="welcome">#{castId} is private</p>
-              <p class="get-started">Enter the password to view this WedCast</p>
+              <p class="get-started">Enter the password to view this Wedcast</p>
             </div>
             <input
               class="name-input"
