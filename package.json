@@ -24,7 +24,10 @@
     "firebase": "^5.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-grid-gallery": "^0.5.1",
     "react-image-gallery": "^0.8.9",
+    "react-measure": "^2.0.2",
+    "react-photo-gallery": "^6.0.29",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {

@@ -28,7 +28,6 @@ export default class FindWedcast extends Component {
           self.props.setCastId(castId);
 
         } else {
-          alert("couldn't find feed")
         }
       });
   }

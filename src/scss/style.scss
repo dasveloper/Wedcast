@@ -70,7 +70,34 @@ h6 {
     }
   }
 }
+.gallery-bg {
+  height: 100%;
+  width: 100%;
+  background: #000;
+}
+.overlay-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:rgba(0,0,0,0.5);
+ text-align: center;
+ padding: 10px;
+  .switch-views {
+    outline:none;
 
+    padding: 10px;
+    font-size: 1.2rem;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: 1px solid #fff;
+    transition: .2s;
+    &:hover{
+      color: #000;
+      background: #fff;
+    }
+  }
+}
 .cast-wrapper {
   height: 100%;
   width: 100%;
@@ -219,6 +246,7 @@ h6 {
     justify-content: flex-end;
 
     .phone-img {
+      max-width: 400px;
       z-index: 2;
       height: 400px;
       transform: translateY(5%);
