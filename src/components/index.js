@@ -36,7 +36,10 @@ export default class App extends Component {
             photography. No more displosable cameras, our easy to use app allows
             everyone to participate.
           </p>
-          <a class="find-wedcast" href="cast">Find a Wedcast</a>
+          
+          <a class="find-wedcast" href="https://www.producthunt.com/upcoming/wedcast">Join our beta test</a>
+          {false && <a class="find-wedcast" href="cast">Find a Wedcast</a>}
+
         </section>
         <section class="feature">
           <div class="feature-left">

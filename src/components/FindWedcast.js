@@ -24,7 +24,7 @@ export default class FindWedcast extends Component {
       .once("value", function(snapshot) {
         const exists = snapshot.val();
         if (exists) {
-         self.props.history.push("cast/foo");
+         self.props.history.push(`cast/${castId}`);
           self.props.setCastId(castId);
 
         } else {
