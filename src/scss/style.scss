@@ -261,6 +261,7 @@ h6 {
       background: rgba(0, 0, 0, 0.5);
       width: 100%;
       padding: 30px 20px;
+      box-sizing: border-box;
       border-radius: 0;
     }
     .hero-logo {
@@ -371,6 +372,21 @@ h6 {
     text-align: center;
   }
 }
+.email {
+  background: #1f9fac;
+  padding: 80px 40px ;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  .email-address {
+    margin: auto;
+    font-size: 1rem;
+    display: block;
+    color: #fff;
+    font-family: Quicksand;
+  }
+
+}
 
 @media screen and (min-width: 690px) {
   .hero {
@@ -396,5 +412,12 @@ h6 {
     .feature-left {
       order: initial;
     }
+  }
+  .email {
+    .email-address {
+      font-size: 2rem;
+   
+    }
+  
   }
 }

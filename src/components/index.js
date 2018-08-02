@@ -20,13 +20,13 @@ export default class App extends Component {
               <div class="ios-appstore-wrapper">
                 <img class="ios-appstore" src="/../src/assets/apple.svg" />
                 <p class="ios-appstore-text">
-                  Download on the <span>AppStore</span>
+                  Coming soon to the <span>AppStore</span>
                 </p>
               </div>
             </div>
           </div>
           <div class="hero-right">
-            <img class="phone-img" src="/../src/assets/phone.png" />
+            <img class="phone-img" src="/../src/assets/phone372x760.png" />
           </div>
         </div>
         <section class="intro">
@@ -80,6 +80,11 @@ export default class App extends Component {
               src="/../src/assets/walkthrough-projector.png"
             />
           </div>
+        </section>
+        <section class="email">
+          <h2 class="email-address">
+           Email: support@wedcast.app
+          </h2>
         </section>
       </div>
     );
