@@ -49,7 +49,7 @@ export default class App extends Component {
           <div class="feature-right">
             <img
               class="feature-image"
-              src="/../src/assets/walkthrough-photos.png"
+              src="/../src/assets/walkthrough-photos.jpg"
             />
           </div>
         </section>
@@ -57,7 +57,7 @@ export default class App extends Component {
           <div class="feature-right">
             <img
               class="feature-image"
-              src="/../src/assets/walkthrough-laptop.png"
+              src="/../src/assets/walkthrough-laptop.jpg"
             />
           </div>
           <div class="feature-left">
@@ -77,7 +77,7 @@ export default class App extends Component {
           <div class="feature-right">
             <img
               class="feature-image"
-              src="/../src/assets/walkthrough-projector.png"
+              src="/../src/assets/walkthrough-projector.jpg"
             />
           </div>
         </section>
