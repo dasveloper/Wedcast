@@ -12,6 +12,7 @@ const routes = (
   <BrowserRouter>
     <Switch>
       <Route path="/" component={index} exact={true}/>
+      <Route path="/beta" component={index} exact={true}/>
       <Route path="/cast/:castId" component={Cast} />
       <Route path="/cast" component={Cast} />
 
