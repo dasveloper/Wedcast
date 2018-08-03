@@ -22,12 +22,15 @@ export default class Cast extends Component {
   checkAccess() {
     let self = this;
     const { currentUser } = firebase.auth();
+    console.log(`feeds/feedNew/${this.props.match.params.id}/members/${currentUser.uid}`)
+    
     firebase
       .database()
       .ref(
-        `feeds/feedNew/${this.props.match.params.id}/members/${currentUser.uid}`
+        `feeds/feedNew/${this.props.match.params.castId}/members/${currentUser.uid}`
       )
       .once("value", function(snapshot) {
+
         console.log("has permission");
 
         self.setState({ hasAccess: true });

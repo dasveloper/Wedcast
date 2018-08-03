@@ -13,11 +13,23 @@ class SlideShow extends Component {
       castId: null,
       password: null,
       width: null,
-      height: null
+      height: null,
+      showMenu: false,
+      timeout: null,
+      infoVisisble: true
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.switchViews = this.switchViews.bind(this);
+    this.captureMove = this.captureMove.bind(this);
+    this.toggleInfo = this.toggleInfo.bind(this);
 
+    this.timeout = setTimeout(
+      function() {
+        // Do something
+        this.setState({ showMenu: false });
+      }.bind(this),
+      3000
+    );
   }
 
   componentWillUnmount() {
@@ -25,15 +37,26 @@ class SlideShow extends Component {
   }
 
   updateWindowDimensions() {
-    console.log(window.innerHeight);
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
   componentDidMount() {
     this.getImages();
+    this.getPassword();
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
   }
-
+  getPassword(){
+    var self = this;
+    let { castId } = this.props;
+    const itemsRef = firebase.database().ref(`feeds/feedNew/${castId}/password`);
+    itemsRef.once("value", snapshot => {
+      const password = snapshot.val();
+      self.setState({
+        password
+       
+      });
+    });
+  }
   getImages() {
     var self = this;
     let { castId } = this.props;
@@ -66,31 +89,69 @@ class SlideShow extends Component {
     });
   }
   switchViews() {
-    if (this.state.view == 1){
-      this.setState({view: 2})
-
-    } else{
-      this.setState({view: 1})
-
+    if (this.state.view == 1) {
+      this.setState({ view: 2 });
+    } else {
+      this.setState({ view: 1 });
     }
   }
+  toggleInfo() {
+      this.setState({ infoVisisble: !this.state.infoVisisble });
+
+  }
+  captureMove() {
+    let self = this;
+    this.setState({ showMenu: true });
+
+    clearTimeout(self.timeout);
+    this.setState({ showMenu: true });
+
+    this.timeout = setTimeout(
+      function() {
+        // Do something
+        this.setState({ showMenu: false });
+      }.bind(this),
+      2000
+    );
+  }
   render() {
-    let { galleryImages, slideshowImages, view, currentUser } = this.state;
+    let {
+      galleryImages,
+      showMenu,
+      slideshowImages,
+      view,
+      currentUser,
+      infoVisisble,
+      password
+    } = this.state;
     let { castId } = this.props;
     const width = this.state.width;
+    
     return (
-      <div class="gallery-bg">
+      <div class="gallery-bg" onMouseMove={this.captureMove}>
         {slideshowImages &&
           view == 1 && (
             <ImageGallery showThumbnails={false} items={slideshowImages} />
           )}
-        {galleryImages && view == 2 && <Gallery             enableImageSelection={false}
- images={galleryImages} />}
-        <div class="overlay-wrapper">
-        <button class="switch-views" onClick={this.switchViews}>
-          {view == 2 ? "View Slideshow" : "View Gallery"}
-        </button>
+        {galleryImages &&
+          view == 2 && (
+            <Gallery enableImageSelection={false} images={galleryImages} />
+          )}
+          
+        <div className={"overlay-wrapper " + (showMenu ? "show" : "hidden")}>
+        <img class="menu-logo" src="/../src/assets/logo.png" />
+
+          <button class="menu-button" onClick={this.switchViews}>
+            {view == 2 ? "View Slideshow" : "View Gallery"}
+          </button>
+          <button class="menu-button" onClick={this.toggleInfo}>
+            {infoVisisble ? "Hide cast info" : "Show cast info"}
+          </button>
         </div>
+        {infoVisisble && <div class="feed-info">
+          <p>#CastID: {castId}</p>
+          <p>Password: {password}</p>
+        </div>}
       </div>
     );
   }

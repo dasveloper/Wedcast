@@ -73,31 +73,62 @@ h6 {
 .gallery-bg {
   height: 100%;
   width: 100%;
-  background: #000;
+  background: #1f9fac;
+}
+.feed-info{
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  text-align: center;
+  p{
+    font-family: QuicksandMedium;
+    font-size: 1.4rem;
+    color: #fff;
+    margin: .25rem;
+  }
 }
 .overlay-wrapper {
+  min-width: 200px;
   position: absolute;
   left: 0;
-  right: 0;
+  top: 0;
   bottom: 0;
-  background:rgba(0,0,0,0.5);
- text-align: center;
- padding: 10px;
-  .switch-views {
-    outline:none;
-
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 10px;
+  transition: 0.4s transform;
+  transform: translateX(-100%);
+  display: flex;
+  flex-direction: column;
+  &.show {
+    transform: translateY(0%);
+  }
+  .menu-button{
+    margin: .5rem 0;
+    outline: none;
+    font-family: QuicksandMedium;
+    background: transparent;
     padding: 10px;
     font-size: 1.2rem;
-    background: rgba(0,0,0,0.5);
     color: #fff;
     border: 1px solid #fff;
-    transition: .2s;
-    &:hover{
+    transition: 0.2s;
+    &:hover {
       color: #000;
       background: #fff;
     }
   }
+  .menu-logo{
+    align-self: center;
+    max-width: 200px;
+    margin: 1rem;
+  }
 }
+
 .cast-wrapper {
   height: 100%;
   width: 100%;
@@ -375,7 +406,7 @@ h6 {
 }
 .email {
   background: #1f9fac;
-  padding: 80px 40px ;
+  padding: 80px 40px;
   box-sizing: border-box;
   width: 100%;
   text-align: center;
@@ -386,7 +417,6 @@ h6 {
     color: #fff;
     font-family: Quicksand;
   }
-
 }
 
 @media screen and (min-width: 690px) {
@@ -417,8 +447,6 @@ h6 {
   .email {
     .email-address {
       font-size: 2rem;
-   
     }
-  
   }
 }
