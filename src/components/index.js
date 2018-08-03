@@ -37,7 +37,10 @@ export default class App extends Component {
             everyone to participate.
           </p>
           
-          <a class="find-wedcast" href="https://www.producthunt.com/upcoming/wedcast">Join our beta test</a>
+          <br/>
+          <br/>
+          <h3>Be the first to use Wedcast!</h3>
+          <a class="find-wedcast" href="https://www.producthunt.com/upcoming/wedcast">Join our beta test today</a>
           {false && <a class="find-wedcast" href="cast">Find a Wedcast</a>}
 
         </section>
