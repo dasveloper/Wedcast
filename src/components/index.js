@@ -40,7 +40,14 @@ export default class App extends Component {
           <br/>
           <br/>
           <h3>Be the first to use Wedcast!</h3>
-          <a class="find-wedcast" href="https://www.producthunt.com/upcoming/wedcast">Join our beta test today</a>
+
+
+
+<form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/wedcast/forms" method="post" id="ph-email-form" name="ph-email-form" target="_blank">
+  <input type="email"  name="email" id="ph-email" placeholder="Email Address" required />
+  <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
+</form>
+         <p>Subscribe and recieve early access to Wedcast as well as all deals and promotions.</p>
           {false && <a class="find-wedcast" href="cast">Find a Wedcast</a>}
 
         </section>

@@ -20,7 +20,6 @@ export default class App extends Component {
     let castId = this.props.castId;
     let user = firebase.auth().currentUser;
     let userObj = { userName: user.displayName, password: self.state.password };
-    console.log(userObj);
     firebase
       .database()
       .ref(`feeds/feedNew/${castId}/members/${user.uid}`)
@@ -32,7 +31,6 @@ export default class App extends Component {
           self.props.grantAccess();
         }
       });
-    console.log("submit");
   }
   render() {
     let { password } = this.state;
