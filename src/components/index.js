@@ -1,10 +1,37 @@
 import React, { Component } from "react";
+import firebase from "./Firebase.js"; // <--- add this line
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-  }
+    this.state = {
+      email: null,
+      error: null,
+      success: null
+    };
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    const self = this;
+    firebase
+      .database()
+      .ref("emails")
+      .push({email: self.state.email},function(error) {
+        if (error)
+          self.setState({success: null, error: "Email not submitted, please try again"});
+        else{
+          self.emailInput.value = "";
+          self.setState({success: "Email submitted successfully", error: null, email:null});
+        }
+      })
+     
+  }
+  handleEmailChange(event) {
+    this.setState({ email: event.target.value });
+  }
   render() {
     return (
       <div>
@@ -43,10 +70,26 @@ export default class App extends Component {
 
 
 
-<form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/wedcast/forms" method="post" id="ph-email-form" name="ph-email-form" target="_blank">
-  <input type="email"  name="email" id="ph-email" placeholder="Email Address" required />
-  <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
-</form>
+        <form id="ph-email-form" onSubmit={this.handleSubmit}>
+            <input
+            ref={el => this.emailInput = el}
+
+              type="email"
+              name="email"
+              id="ph-email"
+              placeholder="Email Address"
+              required
+              value={this.state.email}
+              onChange={this.handleEmailChange}
+
+            />
+            <input
+              type="submit"
+              value="Submit"
+              name="subscribe"
+              id="ph-subscribe-button"
+            />
+          </form>
          <p>Subscribe and recieve early access to Wedcast as well as all deals and promotions.</p>
           {false && <a class="find-wedcast" href="cast">Find a Wedcast</a>}
 
