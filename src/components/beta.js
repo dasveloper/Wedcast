@@ -1,10 +1,37 @@
 import React, { Component } from "react";
+import firebase from "./Firebase.js"; // <--- add this line
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-  }
+    this.state = {
+      email: null,
+      error: null,
+      success: null
+    };
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    const self = this;
+    firebase
+      .database()
+      .ref("emails")
+      .push({email: self.state.email},function(error) {
+        if (error)
+          self.setState({success: null, error: "Email not submitted, please try again"});
+        else{
+          self.emailInput.value = "";
+          self.setState({success: "Email submitted successfully", error: null, email:null});
+        }
+      })
+     
+  }
+  handleEmailChange(event) {
+    this.setState({ email: event.target.value });
+  }
   render() {
     return (
       <div>
@@ -36,27 +63,47 @@ export default class App extends Component {
             photography. No more displosable cameras, our easy to use app allows
             everyone to participate.
           </p>
-          
-          <br/>
-          <br/>
+
+          <br />
+          <br />
           <h3>We're looking for beta testers!</h3>
+        <form id="ph-email-form" onSubmit={this.handleSubmit}>
+            <input
+            ref={el => this.emailInput = el}
 
+              type="email"
+              name="email"
+              id="ph-email"
+              placeholder="Email Address"
+              required
+              value={this.state.email}
+              onChange={this.handleEmailChange}
 
+            />
+            <input
+              type="submit"
+              value="Submit"
+              name="subscribe"
+              id="ph-subscribe-button"
+            />
+          </form>
 
-<form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/wedcast/forms" method="post" id="ph-email-form" name="ph-email-form" target="_blank">
-  <input type="email"  name="email" id="ph-email" placeholder="Email Address" required />
-  <input type="submit" value="Submit" name="subscribe" id="ph-subscribe-button" />
-</form>
-         <p>Submit your email and recieve an invitation to beta test Wedcast before it goes live.</p>
-          {false && <a class="find-wedcast" href="cast">Find a Wedcast</a>}
-
+          <p>
+            Submit your email and recieve an invitation to beta test Wedcast
+            before it goes live.
+          </p>
+          {false && (
+            <a class="find-wedcast" href="cast">
+              Find a Wedcast
+            </a>
+          )}
         </section>
         <section class="feature">
           <div class="feature-left">
             <h3 class="feature-header">Save your memories</h3>
             <p class="feature-text">
-              You and your guests can conveiently download all of your wedding pictures straight to your phone
-              or computer.
+              You and your guests can conveiently download all of your wedding
+              pictures straight to your phone or computer.
             </p>
           </div>
           <div class="feature-right">
@@ -76,7 +123,9 @@ export default class App extends Component {
           <div class="feature-left">
             <h3 class="feature-header">Can't make the wedding?</h3>
             <p class="feature-text">
-              Photos taken at the wedding will be livestreamed to your unique Wedcast url allowing you and your guests to watch the event live from any device.
+              Photos taken at the wedding will be livestreamed to your unique
+              Wedcast url allowing you and your guests to watch the event live
+              from any device.
             </p>
           </div>
         </section>
@@ -84,7 +133,9 @@ export default class App extends Component {
           <div class="feature-left">
             <h3 class="feature-header">Project your Wedcast</h3>
             <p class="feature-text">
-              Connect a projector at your wedding venue to your Wedcast url and you will be able to see your guest's photos live as they are taken.
+              Connect a projector at your wedding venue to your Wedcast url and
+              you will be able to see your guest's photos live as they are
+              taken.
             </p>
           </div>
           <div class="feature-right">
@@ -95,9 +146,7 @@ export default class App extends Component {
           </div>
         </section>
         <section class="email">
-          <h2 class="email-address">
-           Email: support@wedcast.app
-          </h2>
+          <h2 class="email-address">Email: support@wedcast.app</h2>
         </section>
       </div>
     );
