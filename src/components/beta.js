@@ -11,7 +11,6 @@ export default class App extends Component {
     };
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -19,15 +18,21 @@ export default class App extends Component {
     firebase
       .database()
       .ref("emails")
-      .push({email: self.state.email},function(error) {
+      .push({ email: self.state.email }, function(error) {
         if (error)
-          self.setState({success: null, error: "Email not submitted, please try again"});
-        else{
+          self.setState({
+            success: null,
+            error: "Email not submitted, please try again"
+          });
+        else {
           self.emailInput.value = "";
-          self.setState({success: "Email submitted successfully", error: null, email:null});
+          self.setState({
+            success: "Email submitted successfully",
+            error: null,
+            email: null
+          });
         }
-      })
-     
+      });
   }
   handleEmailChange(event) {
     this.setState({ email: event.target.value });
@@ -66,11 +71,16 @@ export default class App extends Component {
 
           <br />
           <br />
-          <h3>We're looking for beta testers!</h3>
-        <form id="ph-email-form" onSubmit={this.handleSubmit}>
-            <input
-            ref={el => this.emailInput = el}
 
+          <a class="find-wedcast" href="cast">
+            Find a Wedcast
+          </a>
+        </section>
+        <section class="beta">
+          <h3>We're looking for beta testers!</h3>
+          <form id="ph-email-form" onSubmit={this.handleSubmit}>
+            <input
+              ref={el => (this.emailInput = el)}
               type="email"
               name="email"
               id="ph-email"
@@ -78,7 +88,6 @@ export default class App extends Component {
               required
               value={this.state.email}
               onChange={this.handleEmailChange}
-
             />
             <input
               type="submit"
@@ -87,16 +96,16 @@ export default class App extends Component {
               id="ph-subscribe-button"
             />
           </form>
-
-          <p>
-            Submit your email and recieve an invitation to beta test Wedcast
-            before it goes live.
-          </p>
-          {false && (
-            <a class="find-wedcast" href="cast">
-              Find a Wedcast
-            </a>
-          )}
+        <div class="how-it-works">
+          <h4>How it works:</h4>
+        
+          <ol class="beta-instructions">
+            <li>Submit you email above</li>
+            <li>You will be sent an invitation to join our beta test on the TestFlight app</li>
+            <li>Play around in our early access Wedcast app and online interface before it goes live</li>
+            <li>Report any bugs you find through TestFlight or email us at <a href="mailto:beta@wedcast.app">beta@wedcast.app</a></li> 
+          </ol>
+          </div>
         </section>
         <section class="feature">
           <div class="feature-left">
