@@ -16,23 +16,43 @@ export default class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const self = this;
+    const email = this.state.email;
+    if (!this.validateEmail(email)){
+      this.setState({
+        success: "",
+        error: "Invalid email address"
+      });
+      return;
+    }
+  
     firebase
       .database()
       .ref("emails")
-      .push({email: self.state.email},function(error) {
+      .push({ email: email, type: 'earlyAdopter:index' }, function(error) {
         if (error)
-          self.setState({success: null, error: "Email not submitted, please try again"});
-        else{
+          self.setState({
+            success: "",
+            error: "Email not submitted, please try again"
+          });
+        else {
           self.emailInput.value = "";
-          self.setState({success: "Email submitted successfully", error: null, email:null});
+          self.setState({
+            success: "Email submitted successfully",
+            error: "",
+            email: null
+          });
         }
-      })
-     
+      });
+  }
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   }
   handleEmailChange(event) {
     this.setState({ email: event.target.value });
   }
   render() {
+    let {success, error} = this.state;
     return (
       <div>
         <div class="hero">
@@ -69,7 +89,9 @@ export default class App extends Component {
           <h3>Be the first to use Wedcast!</h3>
 
 
-
+   {success != "" && <p class="success-message">{success}</p>}
+          {error != "" && <p class="error-message">{error}</p>}
+       
         <form id="ph-email-form" onSubmit={this.handleSubmit}>
             <input
             ref={el => this.emailInput = el}

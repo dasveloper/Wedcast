@@ -493,8 +493,14 @@ padding-top: 0;
   }
 }
 
-
-
+.error-message{
+  font-size: 1.2rem;
+  color: red;
+}
+.success-message{
+  font-size: 1.2rem;
+  color: green;
+}
 
 #ph-email-form {
   display: -webkit-box;

@@ -6,8 +6,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       email: null,
-      error: null,
-      success: null
+      error: "",
+      success: ""
     };
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,29 +15,43 @@ export default class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const self = this;
+    const email = this.state.email;
+    if (!this.validateEmail(email)){
+      this.setState({
+        success: "",
+        error: "Invalid email address"
+      });
+      return;
+    }
+  
     firebase
       .database()
       .ref("emails")
-      .push({ email: self.state.email }, function(error) {
+      .push({ email: email, type: 'beta' }, function(error) {
         if (error)
           self.setState({
-            success: null,
+            success: "",
             error: "Email not submitted, please try again"
           });
         else {
           self.emailInput.value = "";
           self.setState({
             success: "Email submitted successfully",
-            error: null,
+            error: "",
             email: null
           });
         }
       });
   }
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
   handleEmailChange(event) {
     this.setState({ email: event.target.value });
   }
   render() {
+    let { success, error } = this.state;
     return (
       <div>
         <div class="hero">
@@ -78,6 +92,8 @@ export default class App extends Component {
         </section>
         <section class="beta">
           <h3>We're looking for beta testers!</h3>
+          {success != "" && <p class="success-message">{success}</p>}
+          {error != "" && <p class="error-message">{error}</p>}
           <form id="ph-email-form" onSubmit={this.handleSubmit}>
             <input
               ref={el => (this.emailInput = el)}
@@ -96,15 +112,24 @@ export default class App extends Component {
               id="ph-subscribe-button"
             />
           </form>
-        <div class="how-it-works">
-          <h4>How it works:</h4>
-        
-          <ol class="beta-instructions">
-            <li>Submit you email above</li>
-            <li>You will be sent an invitation to join our beta test on the TestFlight app</li>
-            <li>Play around in our early access Wedcast app and online interface before it goes live</li>
-            <li>Report any bugs you find through TestFlight or email us at <a href="mailto:beta@wedcast.app">beta@wedcast.app</a></li> 
-          </ol>
+          <div class="how-it-works">
+            <h4>How it works:</h4>
+
+            <ol class="beta-instructions">
+              <li>Submit you email above</li>
+              <li>
+                You will be sent an invitation to join our beta test on the
+                TestFlight app
+              </li>
+              <li>
+                Play around in our early access Wedcast app and online interface
+                before it goes live
+              </li>
+              <li>
+                Report any bugs you find through TestFlight or email us at{" "}
+                <a href="mailto:beta@wedcast.app">beta@wedcast.app</a>
+              </li>
+            </ol>
           </div>
         </section>
         <section class="feature">
