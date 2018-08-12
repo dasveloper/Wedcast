@@ -8,6 +8,7 @@ import Cast from "./components/Cast";
 import index from "./components/index";
 import Beta from "./components/beta";
 
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 const routes = (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const routes = (
       <Route path="/beta" component={Beta} exact={true}/>
       <Route path="/cast/:castId" component={Cast} />
       <Route path="/cast" component={Cast} />
+      <Route path="/privacypolicy" component={PrivacyPolicy}/>
 
       <Route component={NotFoundPage} />
     </Switch>
