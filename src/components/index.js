@@ -28,7 +28,7 @@ export default class App extends Component {
     firebase
       .database()
       .ref("emails")
-      .push({ email: email, type: 'earlyAdopter:index' }, function(error) {
+      .push({ email: email, type: 'newsletter:index' }, function(error) {
         if (error)
           self.setState({
             success: "",
@@ -84,36 +84,8 @@ export default class App extends Component {
             everyone to participate.
           </p>
           
-          <br/>
-          <br/>
-          <h3>Be the first to use Wedcast!</h3>
-
-
-   {success != "" && <p class="success-message">{success}</p>}
-          {error != "" && <p class="error-message">{error}</p>}
-       
-        <form id="ph-email-form" onSubmit={this.handleSubmit}>
-            <input
-            ref={el => this.emailInput = el}
-
-              type="email"
-              name="email"
-              id="ph-email"
-              placeholder="Email Address"
-              required
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-
-            />
-            <input
-              type="submit"
-              value="Submit"
-              name="subscribe"
-              id="ph-subscribe-button"
-            />
-          </form>
-         <p>Subscribe and recieve early access to Wedcast as well as all deals and promotions.</p>
-          {false && <a class="find-wedcast" href="cast">Find a Wedcast</a>}
+         
+          <a class="find-wedcast" href="cast">Find a Wedcast</a>
 
         </section>
         <section class="feature">
@@ -163,6 +135,34 @@ export default class App extends Component {
           <h2 class="email-address">
            Email: support@wedcast.app
           </h2>
+        </section>
+        <section class="beta">
+          <h3>Subscribe to our newsletter!</h3>
+
+   {success != "" && <p class="success-message">{success}</p>}
+          {error != "" && <p class="error-message">{error}</p>}
+       
+        <form id="ph-email-form" onSubmit={this.handleSubmit}>
+            <input
+            ref={el => this.emailInput = el}
+
+              type="email"
+              name="email"
+              id="ph-email"
+              placeholder="Email Address"
+              required
+              value={this.state.email}
+              onChange={this.handleEmailChange}
+
+            />
+            <input
+              type="submit"
+              value="Submit"
+              name="subscribe"
+              id="ph-subscribe-button"
+            />
+          </form>
+         <p>Subscribe and recieve latstest Wedcast news as well as all deals and promotions.</p>
         </section>
       </div>
     );
