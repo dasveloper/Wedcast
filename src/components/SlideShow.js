@@ -20,16 +20,7 @@ class SlideShow extends Component {
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.switchViews = this.switchViews.bind(this);
-    this.captureMove = this.captureMove.bind(this);
     this.toggleInfo = this.toggleInfo.bind(this);
-
-    this.timeout = setTimeout(
-      function() {
-        // Do something
-        this.setState({ showMenu: false });
-      }.bind(this),
-      3000
-    );
   }
 
   componentWillUnmount() {
@@ -99,21 +90,7 @@ class SlideShow extends Component {
   toggleInfo() {
     this.setState({ infoVisisble: !this.state.infoVisisble });
   }
-  captureMove() {
-    let self = this;
-    this.setState({ showMenu: true });
 
-    clearTimeout(self.timeout);
-    this.setState({ showMenu: true });
-
-    this.timeout = setTimeout(
-      function() {
-        // Do something
-        this.setState({ showMenu: false });
-      }.bind(this),
-      2000
-    );
-  }
   render() {
     let {
       galleryImages,
