@@ -73,8 +73,10 @@ h6 {
 .gallery-bg {
   height: 100%;
   width: 100%;
+  overflow: auto;
   background: #1f9fac;
 }
+
 .feed-info{
   position: absolute;
   bottom: 20px;
@@ -91,6 +93,7 @@ h6 {
     margin: .25rem;
   }
 }
+
 .overlay-wrapper {
   min-width: 200px;
   position: absolute;
@@ -106,6 +109,29 @@ h6 {
   flex-direction: column;
   &.show {
     transform: translateY(0%);
+
+    .menu-toggle{
+      .menu-toggle-ring{
+        transform: rotate(90deg);
+    
+      }
+    }
+
+  }
+  .menu-toggle{
+    padding: 15px;
+    max-width: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    right: 0;
+    top: 40px;
+    transform: translateX(100%);
+    border-radius: 0 20px 20px 0;
+    .menu-toggle-ring{
+      transition: 0.4s transform;
+      max-width: 100%;
+  
+    }
   }
   .menu-button{
     margin: .5rem 0;

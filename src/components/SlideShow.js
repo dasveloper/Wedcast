@@ -45,15 +45,16 @@ class SlideShow extends Component {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
   }
-  getPassword(){
+  getPassword() {
     var self = this;
     let { castId } = this.props;
-    const itemsRef = firebase.database().ref(`feeds/feedNew/${castId}/password`);
+    const itemsRef = firebase
+      .database()
+      .ref(`feeds/feedNew/${castId}/password`);
     itemsRef.once("value", snapshot => {
       const password = snapshot.val();
       self.setState({
         password
-       
       });
     });
   }
@@ -96,8 +97,7 @@ class SlideShow extends Component {
     }
   }
   toggleInfo() {
-      this.setState({ infoVisisble: !this.state.infoVisisble });
-
+    this.setState({ infoVisisble: !this.state.infoVisisble });
   }
   captureMove() {
     let self = this;
@@ -126,9 +126,9 @@ class SlideShow extends Component {
     } = this.state;
     let { castId } = this.props;
     const width = this.state.width;
-    
+
     return (
-      <div class="gallery-bg" onMouseMove={this.captureMove}>
+      <div class="gallery-bg" >
         {slideshowImages &&
           view == 1 && (
             <ImageGallery showThumbnails={false} items={slideshowImages} />
@@ -137,9 +137,12 @@ class SlideShow extends Component {
           view == 2 && (
             <Gallery enableImageSelection={false} images={galleryImages} />
           )}
-          
+
         <div className={"overlay-wrapper " + (showMenu ? "show" : "hidden")}>
-        <img class="menu-logo" src="/../src/assets/logo.png" />
+          <div class="menu-toggle" onClick={()=>    this.setState({ showMenu: !this.state.showMenu })}>
+            <img class="menu-toggle-ring" src="/../src/assets/ring.png" />
+          </div>
+          <img class="menu-logo" src="/../src/assets/logo.png" />
 
           <button class="menu-button" onClick={this.switchViews}>
             {view == 2 ? "View Slideshow" : "View Gallery"}
@@ -148,10 +151,12 @@ class SlideShow extends Component {
             {infoVisisble ? "Hide cast info" : "Show cast info"}
           </button>
         </div>
-        {infoVisisble && <div class="feed-info">
-          <p>#CastID: {castId}</p>
-          <p>Password: {password}</p>
-        </div>}
+        {infoVisisble && (
+          <div class="feed-info">
+            <p>#CastID: {castId}</p>
+            <p>Password: {password}</p>
+          </div>
+        )}
       </div>
     );
   }
