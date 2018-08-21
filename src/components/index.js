@@ -66,9 +66,9 @@ export default class App extends Component {
               </p>
               <div class="ios-appstore-wrapper">
                 <img class="ios-appstore" src="/../src/assets/apple.svg" />
-                <p class="ios-appstore-text">
-                  Coming soon to the <span>AppStore</span>
-                </p>
+                <a class="ios-appstore-text" href ="https://itunes.apple.com/us/app/wedcast/id1407471155?ls=1&mt=8">
+                  Available on the <span>AppStore</span>
+                </a>
               </div>
             </div>
           </div>
