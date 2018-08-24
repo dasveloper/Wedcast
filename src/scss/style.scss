@@ -365,6 +365,21 @@ h6 {
     }
   }
 }
+.social {
+  background: #C5FAF2;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  .social-inner{
+    display: flex;
+    justify-content: space-evenly;
+    
+    width: 600px;
+    max-width: 100%;
+  }
+}
 .intro {
   background: #1f9fac;
   padding: 40px;

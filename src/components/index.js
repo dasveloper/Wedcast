@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "./Firebase.js"; // <--- add this line
 
+import { SocialIcon } from 'react-social-icons';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -76,16 +77,41 @@ export default class App extends Component {
             <img class="phone-img" src="/../src/assets/phone372x760.png" />
           </div>
         </div>
+        <section class="social">
+        <div class="social-inner">
+        
+        <SocialIcon network="twitter" url="https://twitter.com/wedcastapp" style={{ height: 60, width: 60 }} />
+        <SocialIcon network="facebook" url="https://www.facebook.com/wedcast" style={{ height: 60, width: 60  }}/>
+        <SocialIcon network="instagram" url="https://www.instagram.com/wedcastapp/"style={{ height: 60, width: 60  }} />
+        </div>
+        </section>
         <section class="intro">
+        
+
           <p>
             Wedcast is a photo sharing app designed to make your special day
             even more special by putting your guests in charge of the
-            photography. No more displosable cameras, our easy to use app allows
+            photography. No more disposable cameras, our easy to use app allows
             everyone to participate.
           </p>
           
          
           <a class="find-wedcast" href="cast">Find a Wedcast</a>
+
+        </section>
+        <section class="feature">
+        <div class="feature-right">
+            <img
+              class="feature-image"
+              src="/../src/assets/walkthrough-signup.jpg"
+            />
+          </div>
+          <div class="feature-left">
+            <h3 class="feature-header">No-hassle signup</h3>
+            <p class="feature-text">
+              Don't bother with emails and passwords on the big day, your guests can join with only a name.
+            </p>
+          </div>
 
         </section>
         <section class="feature">
