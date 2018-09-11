@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firebase from "./Firebase.js"; // <--- add this line
-
+import ReactGA from "react-ga";
 import { SocialIcon } from "react-social-icons";
 export default class App extends Component {
   constructor(props) {
@@ -13,6 +13,35 @@ export default class App extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentDidMount() {
+    ReactGA.initialize("UA-125543449-1");
+    ReactGA.pageview(window.location.hash);
+  }
+  trackIosClick() {
+    ReactGA.event({
+      category: "InstallClickIos",
+      action: "Clicked iOS Download"
+    });
+  }
+  trackIosClickLower() {
+    ReactGA.event({
+      category: "InstallClickIosLower",
+      action: "Clicked lower iOS Download"
+    });
+  }
+  trackAndroidClick() {
+    ReactGA.event({
+      category: "InstallClickAndroid",
+      action: "Clicked Android Download"
+    });
+  }
+  trackAndroidClickLower() {
+    ReactGA.event({
+      category: "InstallClickAndroidLower",
+      action: "Clicked Android Download"
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const self = this;
@@ -65,24 +94,30 @@ export default class App extends Component {
                 your special day.
               </p>
 
-              <div class="ios-appstore-wrapper">
+              <a
+                class="ios-appstore-wrapper"
+                onClick={() => {
+                  this.trackIosClick();
+                }}
+                href="https://itunes.apple.com/us/app/wedcast/id1407471155?ls=1&mt=8"
+              >
                 <img class="ios-appstore" src="/../src/assets/apple.svg" />
-                <a
-                  class="ios-appstore-text"
-                  href="https://itunes.apple.com/us/app/wedcast/id1407471155?ls=1&mt=8"
-                >
+                <p class="ios-appstore-text">
                   Available on the <span>AppStore</span>
-                </a>
-              </div>
-              <div class="ios-appstore-wrapper">
+                </p>
+              </a>
+              <a
+                class="ios-appstore-wrapper"
+                onClick={() => {
+                  this.trackAndroidClick();
+                }}
+                href="   https://play.google.com/store/apps/details?id=com.wedcast"
+              >
                 <img class="ios-appstore" src="/../src/assets/play.svg" />
-                <a
-                  class="ios-appstore-text"
-                  href="   https://play.google.com/store/apps/details?id=com.wedcast"
-                >
+                <p class="ios-appstore-text">
                   Get it on <span>Google Play</span>
-                </a>
-              </div>
+                </p>
+              </a>
             </div>
           </div>
           <div class="hero-right">
@@ -205,27 +240,33 @@ export default class App extends Component {
         <h3 class="download-header">Download now:</h3>
 
         <section class="appstore-cta-wrapper">
-          <div class="appstore-cta">
+          <a
+            class="appstore-cta"
+            onClick={() => {
+              this.trackIosClickLower();
+            }}
+            href="https://itunes.apple.com/us/app/wedcast/id1407471155?ls=1&mt=8"
+          >
             <img
               class="appstore-cta-icon"
               src="/../src/assets/apple-black.svg"
             />
-            <a
-              class="appstore-cta-text"
-              href="https://itunes.apple.com/us/app/wedcast/id1407471155?ls=1&mt=8"
-            >
+            <p class="appstore-cta-text">
               Available on the <span>AppStore</span>
-            </a>
-          </div>
-          <div class="appstore-cta">
+            </p>
+          </a>
+          <a
+            class="appstore-cta"
+            onClick={() => {
+              this.trackAndroidClickLower();
+            }}
+            href="https://play.google.com/store/apps/details?id=com.wedcast"
+          >
             <img class="appstore-cta-icon" src="/../src/assets/play.svg" />
-            <a
-              class="appstore-cta-text"
-              href="   https://play.google.com/store/apps/details?id=com.wedcast"
-            >
+            <p class="appstore-cta-text">
               Get it on <span>Google Play</span>
-            </a>
-          </div>
+            </p>
+          </a>
         </section>
         <section class="social">
           <div class="social-inner">

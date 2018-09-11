@@ -330,14 +330,15 @@ h6 {
       align-items: center;
       padding: 10px 20px;
       border-radius: 100px;
-      margin-top: 10px;
+      margin-top: 20px;
+      min-width: 220px;
       .ios-appstore {
         width: 1.3rem;
       }
       .ios-appstore-text {
         text-decoration: none;
         color: #fff;
-        margin-left: 10px;
+        margin-left: 20px;
         font-size: 0.8rem;
         font-family: Quicksand;
         text-align: center;
@@ -543,6 +544,7 @@ h6 {
   flex-direction: column;
   justify-content: space-evenly;
   margin: auto;
+  padding-bottom: 40px;
   .appstore-cta {
     flex: 1;
     margin: 10px 20px;
@@ -553,6 +555,7 @@ h6 {
     align-items: center;
     padding: 10px 20px;
     border-radius: 100px;
+    text-decoration: none;
     .appstore-cta-icon {
       width: 2rem;
     }
